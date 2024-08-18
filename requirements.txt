@@ -1,8 +1,7 @@
-pip==24.2
-tokenizers==0.11.6
 Flask==2.0.1
 Pillow==8.2.0
 transformers==4.9.2
 torch==2.4.0
 openml==0.12.2
 gunicorn==20.1.0
+tokenizers==0.10.3
