@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Analise sua Imagem</title>
+    <style>
+      body {
+        background-color: #121212; /* Preto muito escuro */
+        color: #e0e0e0; /* Cinza claro para o texto */
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Fonte legível */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+      }
+      .container {
+        text-align: center;
+        max-width: 800px;
+        padding: 20px;
+        background-color: #1e1e1e; /* Cinza escuro */
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.7); /* Sombra mais sutil */
+      }
+      h1 {
+        font-weight: bold;
+        text-transform: uppercase;
+        margin-bottom: 20px;
+        font-size: 2em; /* Aumentar o tamanho da fonte para o título */
+      }
+      input[type="file"], input[type="submit"] {
+        margin: 10px 0;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        background-color: #bb86fc; /* Azul claro */
+        color: #fff;
+        cursor: pointer;
+        font-size: 1em;
+      }
+      input[type="file"] {
+        background-color: #6200ea; /* Azul mais escuro */
+      }
+      input[type="submit"] {
+        background-color: #03dac6; /* Verde claro */
+      }
+      .progress-container {
+        margin: 20px 0;
+        text-align: center;
+      }
+      .progress-bar {
+        width: 100%;
+        height: 20px;
+        background-color: #333;
+        border-radius: 10px;
+        overflow: hidden;
+      }
+      .progress-bar span {
+        display: block;
+        height: 100%;
+        background-color: #bb86fc; /* Azul claro */
+        width: 0%;
+        transition: width 0.1s ease-in-out;
+      }
+    </style>
+    <script>
+      function updateProgressBar() {
+        const progressBar = document.querySelector('.progress-bar span');
+        let width = 0;
+        const interval = setInterval(() => {
+          if (width >= 100) {
+            clearInterval(interval);
+          } else {
+            width++;
+            progressBar.style.width = width + '%';
+          }
+        }, 50); // Ajuste o tempo conforme necessário para sincronizar com o tempo de análise
+      }
+    </script>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Analise sua Imagem</h1>
+      <form action="/upload" method="post" enctype="multipart/form-data" onsubmit="updateProgressBar()">
+        <input type="file" name="file" accept="image/*" required>
+        <input type="submit" value="Upload e Analisar">
+      </form>
+      <div class="progress-container">
+        <div class="progress-bar">
+          <span></span>
+        </div>
+      </div>
+      <div class="caption">{{ caption }}</div>
+    </div>
+  </body>
+</html>
