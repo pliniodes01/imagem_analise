@@ -4,4 +4,5 @@ transformers==4.9.2
 torch==2.4.0
 openml==0.12.2
 gunicorn==20.1.0
+numpy
 tokenizers==0.10.3
